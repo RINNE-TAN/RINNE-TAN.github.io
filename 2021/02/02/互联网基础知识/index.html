@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Rinne-Tan">
   <meta name="keywords" content="">
-  <title>Hello World - Rinne-Tan</title>
+  <title>互联网基础知识 - Rinne-Tan</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
+            <span class="h2" id="subtitle" title="互联网基础知识">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-01 22:39" pubdate>
-        2021年2月1日 晚上
+      <time datetime="2021-02-02 19:41" pubdate>
+        2021年2月2日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      45 字
+      1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      10
        分钟
     </span>
   
@@ -224,16 +224,58 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">互联网基础知识</h1>
             
             <div class="markdown-body">
-              <p>在多次努力和尝试以后终于搭好了自己的第一个博客，希望可以每日记录自己的所思所得，做个不咕咕的人。</p>
+              <h1 id="互联网知识梳理"><a href="#互联网知识梳理" class="headerlink" title="互联网知识梳理"></a>互联网知识梳理</h1><p>这是按照<a target="_blank" rel="noopener" href="https://roadmap.sh/backend">roadmap</a>来进行自己的后端学习的规划的第一步，梳理和学习基础的互联网知识</p>
+<h2 id="互联网是如何工作的"><a href="#互联网是如何工作的" class="headerlink" title="互联网是如何工作的"></a>互联网是如何工作的</h2><p>这里主要是参考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/learn/How_the_Internet_works">MDN</a>写下自己的一点理解</p>
+<ul>
+<li><p>两台电脑进行通信需要进行连接，这个过程包括有线连接和无线连接，有线方式比如网线，无线方式比如蓝牙和wifi。</p>
+</li>
+<li><p>当电脑数量多了以后需要的网线就成指数级别增长，就可以通过<strong>路由</strong>来对信息进行同意地接收和发送。</p>
+</li>
+<li><p>路由器和路由器之间可以连接，形成更加大的网络。</p>
+</li>
+<li><p>由此带来新的问题，不是所有地方都有网线覆盖，于是需要调制<strong>解调器（<em>modem</em>）</strong>来将网络信号转换为电话设施可以处理的信息。</p>
+</li>
+<li><p><strong>互联网服务提供商（ISP）</strong>是可以管理特殊的路由器的公司，他们同时可以和别的ISP进行连接，分发管理信息 。</p>
+</li>
+</ul>
+<p>互联网发展是一个迭代的过程：</p>
+<p>电脑间直接连接-&gt;路由器管理信息-&gt;通过modem把信息转换为更加容易传播的电话信号-&gt;通过ISP对路由器进行管理</p>
+<h2 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h2><p>ip地址是互联网协议中标识发送和接受数据的设备的一串数字，又译<strong>网络协议地址</strong>。</p>
+<p>ip地址的主要功能：</p>
+<ul>
+<li><strong>标识主机</strong>：标识主机的网络接口，提供它在网络中的位置。</li>
+<li><strong>网络寻址</strong>：该功能的目的是将数据报从一个网络模块发送到目的地，这个过程中ip地址意味着主机位置，域名意味着我们要找什么，路由意味着我们要如何到达目的地</li>
+</ul>
+<p>ipv4和ipv6是ip地址的两种协议，目前ipv4已经用尽。</p>
+<p>ip地址的分配有两种方式，一种是根据主机的硬件和软件设施<strong>永久</strong>分配给主机的，被称为<strong>静态ip地址</strong>，一种是在主机每次加入网络时动态分配的，称为<strong>动态ip地址</strong>。</p>
+<h2 id="内网ip和公网ip"><a href="#内网ip和公网ip" class="headerlink" title="内网ip和公网ip"></a>内网ip和公网ip</h2><p>内外网是相当于防火墙而言的，一般来说防火墙内的称为内网，防火墙外的称为外网。</p>
+<p>公网地址是指在因特网上面可以被直接访问到的地址，一旦你有了一个公网ip，意味着你不但能够访问别人，也能被别人访问到（自己的电脑假如可以被随随便便访问到那当然非常恐怖）。因此，公网地址是各类服务器必不可少的条件。</p>
+<p>有些ip地址段在设计之初就被预留出来，这些ip地址称为私有ip地址，任何内网中的设备都可以使用这些私有ip地址，但是却不能出现在外网上。<strong>内网地址只能在局域网中使用，不同局域网中可以使用相同的ip地址</strong>，内网内的主机想要访问外网，就必须通过<strong>NAT转换</strong>。</p>
+<h2 id="NAT转换"><a href="#NAT转换" class="headerlink" title="NAT转换"></a>NAT转换</h2><h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>如果想给一个电脑发送信息（也可以理解成给服务器发送信息，服务器本身也是台电脑），就必须有唯一识别的方式，就是我们常说的ip地址，当然ip地址是点分十进制的形式表现出来的，记忆不方便，于是就有了和其一一对应的域名。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><strong>域名系统（DNS）</strong>是一项互联网服务，是一个将域名和ip地址一一对应起来的分布式数据库，一般使用迭代查询的方法，把查询任务不断下放给下一个查询服务器直到返回结果（即ip地址），这个过程被称作<strong>域名解析</strong>，一个域名的所有者可以通过<strong>WHOIS数据库</strong>进行查询，DNS只能将静态的ip地址和域名绑定。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/">-后端知识梳理</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Internat/">-Internat</a>
+                    
+                  </div>
                 
               </div>
               
@@ -244,15 +286,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/02/%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">互联网基础知识</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/02/01/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
