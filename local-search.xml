@@ -4,23 +4,48 @@
   
   
   <entry>
-    <title>互联网基础知识（1）</title>
-    <link href="/2021/02/02/%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89/"/>
-    <url>/2021/02/02/%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89/</url>
+    <title>互联网基础知识（2）</title>
+    <link href="/2021/02/03/%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89/"/>
+    <url>/2021/02/03/%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89/</url>
     
-    <content type="html"><![CDATA[<h1 id="互联网知识梳理（1）"><a href="#互联网知识梳理（1）" class="headerlink" title="互联网知识梳理（1）"></a>互联网知识梳理（1）</h1><p>这是按照<a href="https://roadmap.sh/backend">roadmap</a>来进行自己的后端学习的规划的第一步，梳理和学习基础的互联网知识</p><h2 id="互联网是如何工作的"><a href="#互联网是如何工作的" class="headerlink" title="互联网是如何工作的"></a>互联网是如何工作的</h2><p>这里主要是参考<a href="https://developer.mozilla.org/zh-CN/docs/learn/How_the_Internet_works">MDN</a>写下自己的一点理解</p><ul><li><p>两台电脑进行通信需要进行连接，这个过程包括有线连接和无线连接，有线方式比如网线，无线方式比如蓝牙和wifi。</p></li><li><p>当电脑数量多了以后需要的网线就成指数级别增长，就可以通过<strong>路由</strong>来对信息进行同意地接收和发送。</p></li><li><p>路由器和路由器之间可以连接，形成更加大的网络。</p></li><li><p>由此带来新的问题，不是所有地方都有网线覆盖，于是需要调制<strong>解调器（<em>modem</em>）</strong>来将网络信号转换为电话设施可以处理的信息。</p></li><li><p><strong>互联网服务提供商（ISP）</strong>是可以管理特殊的路由器的公司，他们同时可以和别的ISP进行连接，分发管理信息 。</p></li></ul><p>互联网发展是一个迭代的过程：</p><p>电脑间直接连接-&gt;路由器管理信息-&gt;通过modem把信息转换为更加容易传播的电话信号-&gt;通过ISP对路由器进行管理</p><h2 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h2><p>ip地址是互联网协议中标识发送和接受数据的设备的一串数字，又译<strong>网络协议地址</strong>。</p><p>ip地址的主要功能：</p><ul><li><strong>标识主机</strong>：标识主机的网络接口，提供它在网络中的位置。</li><li><strong>网络寻址</strong>：该功能的目的是将数据报从一个网络模块发送到目的地，这个过程中ip地址意味着主机位置，域名意味着我们要找什么，路由意味着我们要如何到达目的地</li></ul><p>ipv4和ipv6是ip地址的两种协议，目前ipv4已经用尽。</p><p>ip地址的分配有两种方式，一种是根据主机的硬件和软件设施<strong>永久</strong>分配给主机的，被称为<strong>静态ip地址</strong>，一种是在主机每次加入网络时动态分配的，称为<strong>动态ip地址</strong>。</p><h2 id="内网ip和公网ip"><a href="#内网ip和公网ip" class="headerlink" title="内网ip和公网ip"></a>内网ip和公网ip</h2><p>内外网是相当于防火墙而言的，一般来说防火墙内的称为内网，防火墙外的称为外网。</p><p>公网地址是指在因特网上面可以被直接访问到的地址，一旦你有了一个公网ip，意味着你不但能够访问别人，也能被别人访问到（自己的电脑假如可以被随随便便访问到那当然非常恐怖）。因此，公网地址是各类服务器必不可少的条件。</p><p>有些ip地址段在设计之初就被预留出来，这些ip地址称为私有ip地址，任何内网中的设备都可以使用这些私有ip地址，但是却不能出现在外网上。<strong>内网地址只能在局域网中使用，不同局域网中可以使用相同的ip地址</strong>，内网内的主机想要访问外网，就必须通过<strong>NAT转换</strong>。</p><h2 id="NAT转换"><a href="#NAT转换" class="headerlink" title="NAT转换"></a>NAT转换</h2><p>内网内的主机想要访问外网，就必须通过NAT转换，将内网ip映射到<strong>公网ip的不同端口</strong>上面，这意味着一个公网ip可以对应多个内网ip，</p><p>区分内网公网的原因有两个，一个是为了安全（防止内网设备被公网访问），一个是为了应对ipv4的ip的不足，一般来说家庭内网的ip通常是以192.168.1开头，这足以应对大部分家庭网络需求。这也解释了为什么家庭用的主机一般是动态ip。</p><h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>如果想给一个电脑发送信息（也可以理解成给服务器发送信息，服务器本身也是台电脑），就必须有唯一识别的方式，就是我们常说的ip地址，当然ip地址是点分十进制的形式表现出来的，记忆不方便，于是就有了和其一一对应的域名。</p><h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><strong>域名系统（DNS）</strong>是一项互联网服务，是一个将域名和ip地址一一对应起来的分布式数据库，一般使用迭代查询的方法，把查询任务不断下放给下一个查询服务器直到返回结果（即ip地址），这个过程被称作<strong>域名解析</strong>，一个域名的所有者可以通过<strong>WHOIS数据库</strong>进行查询，DNS只能将静态的ip地址和域名绑定。</p><h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>下一篇完成内容</p><ul><li>动态DNS</li><li>托管</li><li>浏览器</li><li>HTTP</li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="互联网基础知识（2）"><a href="#互联网基础知识（2）" class="headerlink" title="互联网基础知识（2）"></a>互联网基础知识（2）</h1><h2 id="动态DNS"><a href="#动态DNS" class="headerlink" title="动态DNS"></a>动态DNS</h2><p><strong>动态DNS（DDNS）</strong>是一种在DNS服务中自动更新名称服务器内容的技术，根据互联网域名订立的协定，域名必须跟随固定的ip地址。但是动态DNS为动态网域提供一个固定的<strong>名称服务器</strong>，透过及时<strong>更新</strong>，使得外界用户可以连上动态用户的网址。DDNS将互联网域名指向了一个可能经常改变的ip地址，实现动态DNS需要将网域的最大缓存时间设定到一个非常短的时间，从而避免用户在缓存中保存了一个旧的up地址，并且每个新连接创建的时候都重新获得更新ip地址。提供DDNS服务的机构会通过<strong>数据库</strong>来保存用户的ip地址信息并动态更新。</p><h2 id="HTTP协议和HTTPS协议"><a href="#HTTP协议和HTTPS协议" class="headerlink" title="HTTP协议和HTTPS协议"></a>HTTP协议和HTTPS协议</h2><p>超文本传输协议（http）是数据通信的基础，最初的目的是提供一种发布和接受html页面的方法，通过http和https请求的资源都通过URL进行定位。</p><p>http的响应头里面有Set-Cookie这一项。</p><p>而https的主要作用就是在http的基础上建立一个安全信道，要求浏览器可以正确实现https并且操作系统中安装了正确的可信的证书颁发机构（大部分浏览器会对未持有有效证书的域名提出警告）。</p><p>http在传输的过程中对信息进行了加密处理，但是因为这个导致加载页面的时间会被拖慢，服务器资源消耗增加。</p><p>都应该尽量使用https而非http。</p><h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>cookie（又称小甜饼）是一种小型文本文件，由于http协议进行信息传递是无状态的，因此需要cookie来记录用户信息，在http的响应头里面会有Set-Cookie这一项，在设置cookie的时候可以设置cookie的名称、值、过期时间、域名、服务器路径、是否强制使用https等等。</p><p>内存cookie由浏览器进行管理和维护。</p><h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>内容比较多，需要单独整理</p><h2 id="WEB托管"><a href="#WEB托管" class="headerlink" title="WEB托管"></a>WEB托管</h2><p>web托管是一种提供互联网基础设施的服务，网站托管定期收取费用，提供域名、网站存储业务、可以被浏览器访问的服务器。</p><p>一般分为4类：</p><ul><li><p><strong>共享虚拟主机（vps)</strong></p><p>共享托管意味着多个业务运行在一个服务器或者硬件上面，一个服务器的资源拆分了以后再进行出租。</p></li><li><p><strong>专用服务器</strong></p><p>即一个服务器对应一个业务。</p></li><li><p><strong>云主机</strong></p><p>在一组集群服务器虚拟出多个独立服务器，每个服务器都有云服务器的一个镜像，提高稳定性。</p></li><li><p><strong>网站托管</strong></p><p>网站服务器是专门为网站页面设计和优化的，适用于网站搭建。</p></li></ul><p>托管的业务和物理服务器数量对应关系：</p><p>vps：一对多</p><p>专用服务器：一对一</p><p>云主机：多对一</p>]]></content>
     
     
     <categories>
       
-      <category>-后端知识梳理</category>
+      <category>后端知识梳理</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>-Internat</tag>
+      <tag>Internat</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>互联网基础知识（1）</title>
+    <link href="/2021/02/02/%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89/"/>
+    <url>/2021/02/02/%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="互联网基础知识（1）"><a href="#互联网基础知识（1）" class="headerlink" title="互联网基础知识（1）"></a>互联网基础知识（1）</h1><p>这是按照<a href="https://roadmap.sh/backend">roadmap</a>来进行自己的后端学习的规划的第一步，梳理和学习基础的互联网知识</p><h2 id="互联网是如何工作的"><a href="#互联网是如何工作的" class="headerlink" title="互联网是如何工作的"></a>互联网是如何工作的</h2><p>这里主要是参考<a href="https://developer.mozilla.org/zh-CN/docs/learn/How_the_Internet_works">MDN</a>写下自己的一点理解</p><ul><li><p>两台电脑进行通信需要进行连接，这个过程包括有线连接和无线连接，有线方式比如网线，无线方式比如蓝牙和wifi。</p></li><li><p>当电脑数量多了以后需要的网线就成指数级别增长，就可以通过<strong>路由</strong>来对信息进行同意地接收和发送。</p></li><li><p>路由器和路由器之间可以连接，形成更加大的网络。</p></li><li><p>由此带来新的问题，不是所有地方都有网线覆盖，于是需要调制<strong>解调器（<em>modem</em>）</strong>来将网络信号转换为电话设施可以处理的信息。</p></li><li><p><strong>互联网服务提供商（ISP）</strong>是可以管理特殊的路由器的公司，他们同时可以和别的ISP进行连接，分发管理信息 。</p></li></ul><p>互联网发展是一个迭代的过程：</p><p>电脑间直接连接-&gt;路由器管理信息-&gt;通过modem把信息转换为更加容易传播的电话信号-&gt;通过ISP对路由器进行管理</p><h2 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h2><p>ip地址是互联网协议中标识发送和接受数据的设备的一串数字，又译<strong>网络协议地址</strong>。</p><p>ip地址的主要功能：</p><ul><li><strong>标识主机</strong>：标识主机的网络接口，提供它在网络中的位置。</li><li><strong>网络寻址</strong>：该功能的目的是将数据报从一个网络模块发送到目的地，这个过程中ip地址意味着主机位置，域名意味着我们要找什么，路由意味着我们要如何到达目的地</li></ul><p>ipv4和ipv6是ip地址的两种协议，目前ipv4已经用尽。</p><p>ip地址的分配有两种方式，一种是根据主机的硬件和软件设施<strong>永久</strong>分配给主机的，被称为<strong>静态ip地址</strong>，一种是在主机每次加入网络时动态分配的，称为<strong>动态ip地址</strong>。</p><h2 id="内网ip和公网ip"><a href="#内网ip和公网ip" class="headerlink" title="内网ip和公网ip"></a>内网ip和公网ip</h2><p>内外网是相当于防火墙而言的，一般来说防火墙内的称为内网，防火墙外的称为外网。</p><p>公网地址是指在因特网上面可以被直接访问到的地址，一旦你有了一个公网ip，意味着你不但能够访问别人，也能被别人访问到（自己的电脑假如可以被随随便便访问到那当然非常恐怖）。因此，公网地址是各类服务器必不可少的条件。</p><p>有些ip地址段在设计之初就被预留出来，这些ip地址称为私有ip地址，任何内网中的设备都可以使用这些私有ip地址，但是却不能出现在外网上。<strong>内网地址只能在局域网中使用，不同局域网中可以使用相同的ip地址</strong>，内网内的主机想要访问外网，就必须通过<strong>NAT转换</strong>。</p><h2 id="NAT转换"><a href="#NAT转换" class="headerlink" title="NAT转换"></a>NAT转换</h2><p>内网内的主机想要访问外网，就必须通过NAT转换，将内网ip映射到<strong>公网ip的不同端口</strong>上面，这意味着一个公网ip可以对应多个内网ip，</p><p>区分内网公网的原因有两个，一个是为了安全（防止内网设备被公网访问），一个是为了应对ipv4的ip的不足，一般来说家庭内网的ip通常是以192.168.1开头，这足以应对大部分家庭网络需求。这也解释了为什么家庭用的主机一般是动态ip。</p><h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>如果想给一个电脑发送信息（也可以理解成给服务器发送信息，服务器本身也是台电脑），就必须有唯一识别的方式，就是我们常说的ip地址，当然ip地址是点分十进制的形式表现出来的，记忆不方便，于是就有了和其一一对应的域名。</p><h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><strong>域名系统（DNS）</strong>是一项互联网服务，是一个将域名和ip地址一一对应起来的分布式数据库，一般使用迭代查询的方法，把查询任务不断下放给下一个查询服务器直到返回结果（即ip地址），这个过程被称作<strong>域名解析</strong>，一个域名的所有者可以通过<strong>WHOIS数据库</strong>进行查询，DNS只能将静态的ip地址和域名绑定。</p><h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>下一篇完成内容</p><ul><li>动态DNS</li><li>托管</li><li>浏览器</li><li>HTTP</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>后端知识梳理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Internat</tag>
       
     </tags>
     
