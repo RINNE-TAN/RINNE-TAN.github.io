@@ -192,7 +192,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      907 字
+      1.2k 字
     </span>
   
 
@@ -202,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      15
        分钟
     </span>
   
@@ -286,7 +286,39 @@ go env
 #七牛云： https:&#x2F;&#x2F;goproxy.cn
  
 #GoCenter： https:&#x2F;&#x2F;gocenter.io</code></pre></div>
-<h2 id="配置nginx解决反向代理和跨域"><a href="#配置nginx解决反向代理和跨域" class="headerlink" title="配置nginx解决反向代理和跨域"></a>配置nginx解决反向代理和跨域</h2><p>待续………….</p>
+<h2 id="配置nginx解决反向代理和跨域"><a href="#配置nginx解决反向代理和跨域" class="headerlink" title="配置nginx解决反向代理和跨域"></a>配置nginx解决反向代理和跨域</h2><h3 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h3><p>以下内容搬运了部分他人的博客。</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo apt-get install nginx
+#Ubuntu下安装
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo &#x2F;etc&#x2F;init.d&#x2F;nginx start
+#启动
+lsof -i:80
+#查看80端口使用情况，nginx默认监听80端口，即http的端口
+&#x2F;usr&#x2F;sbin&#x2F;nginx -t -c &#x2F;etc&#x2F;nginx&#x2F;nginx.conf
+#检查配置文件是否正确
+#如果正确会出现ok和successful等内容</code></pre></div>
+<p>然后记得防火墙打开80端口，服务器安全组设置80端口。</p>
+<p>再通过ip地址访问就可以看见nginx的界面了。</p>
+<h3 id="将请求转到8080端口"><a href="#将请求转到8080端口" class="headerlink" title="将请求转到8080端口"></a>将请求转到8080端口</h3><p>nginx的<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/beginners_guide.html">官方文档</a></p>
+<p>好难啊草）</p>
+<h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><p>在整个配置过程中必然少不了失败重装失败重装，所以掌握干净的卸载方法也很重要。</p>
+<p>这里以卸载nginx举例子</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo apt-get --purge remove nginx
+#卸载nginx --purge代表包括配置文件
+sudo apt-get autoremove
+#自动卸载不用的软件
+dpkg --get-selection|grep nginx
+#列出和nginx相关的软件
+ps -ef |grep nginx
+#查看nginx进程
+kill -9 pid
+#杀死对应进程
+sudo find &#x2F; -name nginx*
+#查找所有nginx相关文件
+sudo rm -rf file
+#彻底删除</code></pre></div>
 
             </div>
             <hr>
