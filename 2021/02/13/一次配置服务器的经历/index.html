@@ -192,7 +192,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.6k 字
     </span>
   
 
@@ -202,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      20
        分钟
     </span>
   
@@ -286,7 +286,7 @@ go env
 #七牛云： https:&#x2F;&#x2F;goproxy.cn
  
 #GoCenter： https:&#x2F;&#x2F;gocenter.io</code></pre></div>
-<h2 id="配置nginx解决反向代理和跨域"><a href="#配置nginx解决反向代理和跨域" class="headerlink" title="配置nginx解决反向代理和跨域"></a>配置nginx解决反向代理和跨域</h2><h3 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h3><p>以下内容搬运了部分他人的博客。</p>
+<h2 id="配置nginx解决反向代理和跨域"><a href="#配置nginx解决反向代理和跨域" class="headerlink" title="配置nginx解决反向代理和跨域"></a>配置nginx解决反向代理和跨域</h2><h3 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h3><p><strong>以下内容搬运了部分他人的博客。</strong></p>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo apt-get install nginx
 #Ubuntu下安装
 sudo apt-get update
@@ -299,10 +299,40 @@ lsof -i:80
 &#x2F;usr&#x2F;sbin&#x2F;nginx -t -c &#x2F;etc&#x2F;nginx&#x2F;nginx.conf
 #检查配置文件是否正确
 #如果正确会出现ok和successful等内容</code></pre></div>
-<p>然后记得防火墙打开80端口，服务器安全组设置80端口。</p>
+<p><strong>然后记得防火墙打开80端口，服务器安全组设置80端口。</strong></p>
 <p>再通过ip地址访问就可以看见nginx的界面了。</p>
+<h3 id="nginx文件结构"><a href="#nginx文件结构" class="headerlink" title="nginx文件结构"></a>nginx文件结构</h3><ul>
+<li>nginx的基本配置文件在/etc/nginx/nginx.conf</li>
+<li>要添加某一服务应该去/etc/nginx/conf.d/xxxxx.conf添加，新加的xxxxx.conf会被引用进nginx.conf的http项里面</li>
+<li>日志文件在/var/log/nginx/里面，可以通过修改nginx.conf里面的配置自定义日志输出</li>
+<li>nginx的启动目录在/etc/init.d/nginx，而且似乎只有启动的时候要用到</li>
+<li>不同系统的文件结构不一样，但是都在nginx.conf有记录</li>
+</ul>
+<h3 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h3><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#这里是我的日志配置
+##
+# Logging Settings
+##
+log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
+                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
+                      &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;
+                       &#39;$upstream_addr&#39;;
+#注意这里的$upstream_addr，这里可以在日志中输出反向代理后请求的去向
+access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log main;
+#这里的main引用了上面定义的main
+error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log debug;
+#错误日志等级调成debug</code></pre></div>
+<p>这里是一条access.log中一条成功转发的日志</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">120.239.136.17 - - [15&#x2F;Feb&#x2F;2021:11:36:53 +0800] &quot;GET &#x2F;api&#x2F;auth&#x2F;hello HTTP&#x2F;1.1&quot; 200 31 &quot;-&quot; &quot;PostmanRuntime&#x2F;7.26.8&quot; &quot;-&quot;127.0.0.1:8080</code></pre></div>
+<p>可以看见请求通过私网ip120.239.136.17经过nginx转发到了服务器上的127.0.0.1:8080上。</p>
 <h3 id="将请求转到8080端口"><a href="#将请求转到8080端口" class="headerlink" title="将请求转到8080端口"></a>将请求转到8080端口</h3><p>nginx的<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/beginners_guide.html">官方文档</a></p>
-<p>好难啊草）</p>
+<p>先上配置文件default.conf（放在/etc/nginx/conf.d/里面）</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">server &#123;
+        listen  80;
+        server_name 公网ip地址;#一定要有
+        location &#x2F; &#123;
+           proxy_pass http:&#x2F;&#x2F;127.0.0.1:8080;
+        &#125;
+&#125;</code></pre></div>
 <h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><p>在整个配置过程中必然少不了失败重装失败重装，所以掌握干净的卸载方法也很重要。</p>
 <p>这里以卸载nginx举例子</p>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo apt-get --purge remove nginx
