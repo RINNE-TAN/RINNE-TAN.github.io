@@ -192,7 +192,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.7k 字
     </span>
   
 
@@ -202,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
+      21
        分钟
     </span>
   
@@ -326,14 +326,19 @@ error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log debug;
 <p>可以看见请求通过私网ip120.239.136.17经过nginx转发到了服务器上的127.0.0.1:8080上。</p>
 <h3 id="将请求转到8080端口"><a href="#将请求转到8080端口" class="headerlink" title="将请求转到8080端口"></a>将请求转到8080端口</h3><p>nginx的<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/beginners_guide.html">官方文档</a></p>
 <p>先上配置文件default.conf（放在/etc/nginx/conf.d/里面）</p>
+<p>这个名字可以随便定，以conf为后缀就行。</p>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">server &#123;
         listen  80;
         server_name 公网ip地址;#一定要有
         location &#x2F; &#123;
            proxy_pass http:&#x2F;&#x2F;127.0.0.1:8080;
+ 			#注意这里如果最后没有&#x2F;则表示相对路径
+ 			#如果加了&#x2F;，则表示绝对根路径
+ 			#而且在转发的时候可以加入原始请求的请求头，这里应该参考官方文档
         &#125;
 &#125;</code></pre></div>
-<h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><p>在整个配置过程中必然少不了失败重装失败重装，所以掌握干净的卸载方法也很重要。</p>
+<p>这个配置的问题解决参考了一篇<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108740468">知乎上的文章</a></p>
+<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><p>在整个配置过程中必然少不了失败重装失败重装，所以掌握干净的卸载方法也很重要。</p>
 <p>这里以卸载nginx举例子</p>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo apt-get --purge remove nginx
 #卸载nginx --purge代表包括配置文件
