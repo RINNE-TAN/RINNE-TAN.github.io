@@ -202,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      22
        分钟
     </span>
   
@@ -322,8 +322,8 @@ access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log main;
 error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log debug;
 #错误日志等级调成debug</code></pre></div>
 <p>这里是一条access.log中一条成功转发的日志</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">120.239.136.17 - - [15&#x2F;Feb&#x2F;2021:11:36:53 +0800] &quot;GET &#x2F;api&#x2F;auth&#x2F;hello HTTP&#x2F;1.1&quot; 200 31 &quot;-&quot; &quot;PostmanRuntime&#x2F;7.26.8&quot; &quot;-&quot;127.0.0.1:8080</code></pre></div>
-<p>可以看见请求通过私网ip120.239.136.17经过nginx转发到了服务器上的127.0.0.1:8080上。</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">xxx.xxx.xxx.xx - - [15&#x2F;Feb&#x2F;2021:11:36:53 +0800] &quot;GET &#x2F;api&#x2F;auth&#x2F;hello HTTP&#x2F;1.1&quot; 200 31 &quot;-&quot; &quot;PostmanRuntime&#x2F;7.26.8&quot; &quot;-&quot;127.0.0.1:8080</code></pre></div>
+<p>可以看见请求从私网ip经过nginx转发到了服务器上的127.0.0.1:8080上。</p>
 <h3 id="将请求转到8080端口"><a href="#将请求转到8080端口" class="headerlink" title="将请求转到8080端口"></a>将请求转到8080端口</h3><p>nginx的<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/beginners_guide.html">官方文档</a></p>
 <p>先上配置文件default.conf（放在/etc/nginx/conf.d/里面）</p>
 <p>这个名字可以随便定，以conf为后缀就行。</p>
@@ -338,7 +338,16 @@ error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log debug;
         &#125;
 &#125;</code></pre></div>
 <p>这个配置的问题解决参考了一篇<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108740468">知乎上的文章</a></p>
-<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><p>在整个配置过程中必然少不了失败重装失败重装，所以掌握干净的卸载方法也很重要。</p>
+<h3 id="配置https"><a href="#配置https" class="headerlink" title="配置https"></a>配置https</h3><p>配置https需要配置ssl证书和绑定域名等等操作，比较麻烦，日后再补。</p>
+<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>跨域检验代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-js" data-language="js"><code class="language-js">var xhr &#x3D; new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, &#39;https:&#x2F;&#x2F;www.xxx.com&#x2F;api&#x2F;action&#39;);
+xhr.send(null);
+xhr.onload &#x3D; function(e) &#123;
+    var xhr &#x3D; e.target;
+    console.log(xhr.responseText);
+&#125;</code></pre></div>
+<h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><p>在整个配置过程中必然少不了失败重装失败重装，所以掌握干净的卸载方法也很重要。</p>
 <p>这里以卸载nginx举例子</p>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo apt-get --purge remove nginx
 #卸载nginx --purge代表包括配置文件
