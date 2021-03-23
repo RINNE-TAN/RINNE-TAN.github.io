@@ -192,7 +192,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      465 字
+      743 字
     </span>
   
 
@@ -202,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      8
        分钟
     </span>
   
@@ -256,7 +256,20 @@ m:&#x3D;make(map[string]int,10)&#x2F;&#x2F;创建容量为10的映射
 var s &#x3D;[]int&#123;1,2,3&#125;
 m:&#x3D;map[string]int&#123;&quot;hello&quot;:1,&quot;world&quot;:2,&#125;</code></pre></div>
 <h2 id="底层数据结构的概念"><a href="#底层数据结构的概念" class="headerlink" title="底层数据结构的概念"></a>底层数据结构的概念</h2><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>占用一片连续的内存空间,在使用的过程中CPU可以将其缓存得更久,因为每个元素类型相同又是连续分配,每次访问每次移动都是相同距离,故效率很高.</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><div class="code-wrapper"><pre class="line-numbers language-go" data-language="go"><code class="language-go">type slice struct &#123;
+	array unsafe.Pointer
+	len   int
+	cap   int
+&#125;&#x2F;&#x2F;切片的底层封装</code></pre></div>
+<p>底层封装了一个指向底层数组的指针,切片的长度,容量,并通过这些参数进行切片操作.</p>
+<ul>
+<li>切片在进行截取操作的时候会共享同一个底层数组.</li>
+<li>切片的类型和长度无关(见定义),数组的类型和长度有关.</li>
+<li>由于slice封装了底层数组的指针,故slice和slice的指针均可以访问到底层数组并且修改数据,但是slice指针可以在函数调用的时候修改容量和长度?</li>
+<li>切片在进行append操作时如果发生扩容,会使得在堆上重新找一片内存空间给切片,也就是说array unsafe.Pointer这个指针会发生变化,可能会和第一点产生冲突,(问题来了,那么原来的内存会被释放吗)</li>
+<li>扩容策略,小于1024的时候直接翻倍,再大了的话会根据元素内存大小,旧slice,新slice要求的容量共同决定.</li>
+</ul>
+
             </div>
             <hr>
             <div>
