@@ -4,6 +4,50 @@
   
   
   <entry>
+    <title>函数式的数据库操作</title>
+    <link href="/2021/04/02/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/"/>
+    <url>/2021/04/02/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>backend</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>golang</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一些git的常用操作</title>
+    <link href="/2021/04/02/%E4%B8%80%E4%BA%9Bgit%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    <url>/2021/04/02/%E4%B8%80%E4%BA%9Bgit%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一些git的常用操作"><a href="#一些git的常用操作" class="headerlink" title="一些git的常用操作"></a>一些git的常用操作</h1><p>当遇到要基于某个分支开发的时候可以使用以下命令</p><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git checkout mybranchgit reset --hard  master#将mybranch重置为master分支git push -f#将目前分支强制推送至远程(无视冲突)</code></pre></div>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>golang复习</title>
     <link href="/2021/03/20/golang%E5%A4%8D%E4%B9%A0/"/>
     <url>/2021/03/20/golang%E5%A4%8D%E4%B9%A0/</url>
